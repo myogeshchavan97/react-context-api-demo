@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, ListGroup } from 'react-bootstrap';
+import ContactContext from '../context/ContactContext';
+import useTheme from '../custom-hooks/useTheme';
 
-const Contact = ({ contact, dispatch }) => {
+const Contact = ({ contact }) => {
+  console.log('from Contact');
+  const { dispatch } = useContext(ContactContext);
+  const { selectedTheme } = useTheme();
   const handleEdit = (property) => {
     switch (property) {
       case 'name':
@@ -47,25 +52,25 @@ const Contact = ({ contact, dispatch }) => {
 
   return (
     <div className='mt-3 mb-3'>
-      <ListGroup.Item>
+      <ListGroup.Item className={`theme ${selectedTheme}`}>
         Name: {contact.name}{' '}
         <Button onClick={() => handleEdit('name')} variant='success' size='sm'>
           Edit
         </Button>
       </ListGroup.Item>
-      <ListGroup.Item>
+      <ListGroup.Item className={`theme ${selectedTheme}`}>
         Email: {contact.email}{' '}
         <Button onClick={() => handleEdit('email')} variant='success' size='sm'>
           Edit
         </Button>
       </ListGroup.Item>
-      <ListGroup.Item>
+      <ListGroup.Item className={`theme ${selectedTheme}`}>
         Phone: {contact.phone}{' '}
         <Button onClick={() => handleEdit('phone')} variant='success' size='sm'>
           Edit
         </Button>
       </ListGroup.Item>
-      <ListGroup.Item>
+      <ListGroup.Item className={`theme ${selectedTheme}`}>
         <Button
           onClick={() => {
             const shouldDelete = window.confirm(

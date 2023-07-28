@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 
 const ContactForm = ({ dispatch, contacts }) => {
+  console.log('from ContactForm');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -71,7 +72,9 @@ const ContactForm = ({ dispatch, contacts }) => {
           onChange={(event) => setPhone(event.target.value)}
         />
       </Form.Group>
-      <Button type='submit'>Add Contact</Button>
+      <Button type='submit' className='mb-3'>
+        Add Contact
+      </Button>
     </form>
   );
 };

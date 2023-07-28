@@ -3,9 +3,12 @@ import ContactForm from './components/ContactForm';
 import ContactList from './components/ContactList';
 import Header from './components/Header';
 import contactReducer from './reducers/contactReducer';
+import ContactContext from './context/ContactContext';
+import useTheme from './custom-hooks/useTheme';
 import './index.css';
 
 function App() {
+  const { selectedTheme } = useTheme();
   const [contacts, dispatch] = useReducer(contactReducer, []);
   const isFirstRender = useRef(true);
 
@@ -26,12 +29,12 @@ function App() {
 
   console.log('contacts', contacts);
   return (
-    <div className='container'>
+    <div className={`container theme ${selectedTheme}`}>
       <Header />
       <ContactForm dispatch={dispatch} contacts={contacts} />
-      {contacts.length > 0 && (
-        <ContactList contacts={contacts} dispatch={dispatch} />
-      )}
+      <ContactContext.Provider value={{ dispatch, contacts }}>
+        {contacts.length > 0 && <ContactList contacts={contacts} />}
+      </ContactContext.Provider>
     </div>
   );
 }

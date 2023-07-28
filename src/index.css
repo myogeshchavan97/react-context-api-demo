@@ -5,9 +5,26 @@
 }
 
 .header {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.icon {
+  cursor: pointer;
 }
 
 .error-msg {
   color: #ff0000;
+}
+
+.theme.light {
+  background-color: #fff;
+  color: #000;
+}
+
+.theme.dark {
+  background-color: #000;
+  color: #fff;
 }
